@@ -1,0 +1,41 @@
+#customers who are located in the USA or France
+SELECT customername, country
+FROM customers
+WHERE country = 'USA' OR country = 'France';
+
+#The following query will return the customer's records who are located in the USA
+#or France and have credit limits greater than 100,000
+
+SELECT  * FROM customers;
+SELECT customerNumber,customerName,country,creditLimit FROM customers
+where (country='USA' OR country='France') and creditLimit>100000;
+
+
+#Suppose you want to find products whose buy prices are within the ranges
+#of 90 and 100. You can use the BETWEEN operator, as in the following query:
+
+SELECT productCode,productName,buyPrice FROM products
+where buyPrice between 90 and 100;
+
+#To find the product whose buy price is not between $20 and $100, you can
+#combine the BETWEEN operator with the NOT operator as follows:
+
+SELECT productCode,productName,buyPrice FROM products
+where buyPrice not between 20 and 100;
+
+#The following query uses the IS NULL operator to find customers who do not
+#have a sales representative
+
+SELECT customerName,country, salesRepEmployeeNumber FROM customers where salesRepEmployeeNumber IS NULL order by customerName;
+
+#The below query uses the IS NOT NULL operator to get the customers who
+#have a sales representative:
+SELECT customerName,country, salesRepEmployeeNumber FROM customers where salesRepEmployeeNumber IS not NULL order by customerName;
+
+#The following query uses the LEFT JOIN predicate and the IS NULL operator
+#to find customers who have no order:
+
+SELECT C.customerNumber,C.customerName,C.country,O.customerNumber FROM customers C LEFT JOIN orders O ON C.customerNumber=O.customerNumber
+WHERE O.customerNumber IS NULL;
+SELECT * FROM orders;
+
